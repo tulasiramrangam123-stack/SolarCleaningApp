@@ -1,0 +1,41 @@
+
+name: Build Solar Cleaning APK
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'SolarCleaningReport_Android_Project_3_Parcels.zip'
+      - '.github/workflows/android.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+
+      - name: Extract Project
+        run: unzip -q SolarCleaningReport_Android_Project_3_Parcels.zip -d .
+
+      - name: Build APK
+        run: gradle -p SolarCleaningApp assembleDebug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: SolarCleaningApp-APK
+          path: SolarCleaningApp/app/build/outputs/apk/debug/app-debug.apk
+          
