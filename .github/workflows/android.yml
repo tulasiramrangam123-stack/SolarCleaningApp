@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - SolarCleaningReport_Android_Green_Updated.zip
+      - SolarCleaningReport_Android_Green_Updated_v3.zip
       - '.github/workflows/android.yml'
 jobs:
   build:
@@ -28,8 +28,7 @@ jobs:
 
       
       - name: Extract Project
-        run: unzip -q SolarCleaningReport_Android_Green_Updated.zip -d .
-
+        run: unzip -q SolarCleaningReport_Android_Green_Updated_v3.zip -d .
       - name: Build APK
         run: gradle -p SolarCleaningApp assembleDebug
 
