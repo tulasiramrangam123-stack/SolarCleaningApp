@@ -30,11 +30,11 @@ jobs:
       - name: Extract Project
         run: unzip -q SolarCleaningReport_Android_Green_Updated_v3.zip -d .
       - name: Build APK
-        run: gradle -p SolarCleaningApp assembleDebug
-
+        
+        run: gradle -p v3/SolarCleaningApp assembleDebug
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: SolarCleaningApp-APK
-          path: SolarCleaningApp/app/build/outputs/apk/debug/app-debug.apk
-          
+      
+          path: v3/SolarCleaningApp/app/build/outputs/apk/debug/app-debug.apk
